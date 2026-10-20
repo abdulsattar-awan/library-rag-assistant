@@ -41,16 +41,24 @@ def similarity(a, b):
 chunk_vectors = [get_vector(c) for c in chunks]
 print("PDF tayyar:", len(chunks), "tukre")
 
-# 4. Retrieval: top 3
+# 4. Retrieval: top 3 (threshold ke saath)
+THRESHOLD = 0.65
+
 def find_top_chunks(question, top_k=3):
     q_vector = get_vector(question)
     scored = [(similarity(q_vector, chunk_vectors[i]), chunks[i]) for i in range(len(chunks))]
     scored.sort(reverse=True)
+    best_score = scored[0][0]
+    print("  [Sab se achha score:", round(best_score, 3), "]")
+    if best_score < THRESHOLD:
+        return ""
     return "\n\n".join(chunk for score, chunk in scored[:top_k])
 
 # 5. Generation
 def answer_question(question):
     context = find_top_chunks(question)
+    if context == "":
+        return "I don't know. Yeh maloomat library handbook mein nahi hai."
     prompt = f"""You are a helpful library assistant for Green Valley College Library.
 Answer the question using ONLY the information below.
 If the answer is not in the information, say "I don't know".
@@ -62,7 +70,6 @@ Information:
 Question: {question}"""
     response = client.models.generate_content(model="gemini-3.8-flash", contents=prompt)
     return response.text
-
 # 6. Chat loop
 print("Library Assistant tayyar hai! Band karne ke liye 'exit' likhein.")
 while True:
