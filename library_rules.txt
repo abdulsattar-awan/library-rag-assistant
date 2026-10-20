@@ -1,0 +1,13 @@
+Library Timings: The library is open from 8:00 AM to 6:00 PM, Monday to Saturday. It is closed on Sundays and public holidays.
+
+Borrowing Rules: Students can borrow up to 3 books at a time. Faculty members can borrow up to 5 books.
+
+Loan Period: Books are issued for 14 days. A book can be renewed once if no one else has reserved it.
+
+Late Fines: The fine for a late book is Rs. 20 per day per book.
+
+Lost Books: If a book is lost, the borrower must pay the full price of the book plus Rs. 200 processing fee.
+
+Digital Resources: Students can access e-books and research databases from home using their university email login.
+
+Silence Policy: Mobile phones must be on silent. Group discussion is allowed only in the discussion room.
